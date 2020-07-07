@@ -2,19 +2,29 @@
 
 
 
-(function(){
+(function () {
 
   const oUl = document.querySelector('ul');
 
-  oUl.addEventListener('touchstart',function(e){
+
+  for(let i =0; i < oUl.length; i ++){
+
+  }
+  oUl.addEventListener('touchstart', function (e) {
     let target = e.target;
-    if(target.classList.contains('select')){
-      console.log("aaa")
+
+    
+    if(target.nodeName =="IMG"){
+      target = target.parentElement;
+      console.log(target);
+    }
+
+    if (target.classList.contains('select')) {
       target.classList.remove('select');
-    }else{
+    } else {
       target.classList.add('select');
     }
-    
-  },false)
+
+  }, false)
 
 }())
