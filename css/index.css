@@ -56,6 +56,13 @@ li.select img{
 }
 
 
+.test{
+  width: 100px;
+  height: 100px;
+  background-color: brown;
+}
+
+
 /* img {
   display: block;
   width: 100%;

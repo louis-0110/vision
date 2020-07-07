@@ -44,5 +44,10 @@
   }
 
 
+  const oT = document.querySelector('.test');
+
+  oT.addEventListener('touchstart',function(e){
+    this.style.backgroundColor = 'red';
+  },false)
 
 }())
