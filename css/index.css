@@ -47,11 +47,11 @@ li::before{
   -webkit-backface-visibility: hidden;
 }
 
-li:hover::before{
+li.select::before{
   transform: rotateY(180deg);
 }
 
-li:hover img{
+li.select img{
   transform: rotateY(0deg);
 }
 
