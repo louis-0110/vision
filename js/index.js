@@ -27,9 +27,9 @@
   // }, false)
 
   oUl.ontouchstart = function (e) {
-    let target = e.target;
-
-    
+    let event = e || window.event;
+    let target = event.target || event.srcElement;
+  
     if(target.nodeName =="IMG"){
       target = target.parentElement;
       console.log(target);
