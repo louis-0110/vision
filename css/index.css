@@ -8,6 +8,11 @@ ul {
   list-style: none;
 }
 
+.clearFix::after{
+  content: '';
+  clear: both;
+  display: block;
+}
 .container {
   width: 90vw;
   height: 90vw;
