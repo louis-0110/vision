@@ -3,7 +3,12 @@
 **
 */
 const oWrap = document.getElementsByClassName('wrap')[0];
+const oContarner = document.querySelector('.container');
 
+  //清除移动端默认事件
+  oContarner.addEventListener('touchstart',ev=>{
+    ev.preventDefault();
+  })
 
 function Card(imageIndex) {
   this.status = 'back';   //back select clear
