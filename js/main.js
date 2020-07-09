@@ -175,5 +175,19 @@ const li = document.querySelectorAll('li');
   
  })
 
+//进度条构造函数
 
+function ProgressBar(TotalLen){
+  this.totL= TotalLen; 
+}
+
+
+ // 游戏时间
+//1.点击shart  开始到即时
+//2.时时刷新时间
+// 3.到达址时间现实游戏结束  调用弹窗
+
+
+ //游戏进度
+ // 1. 显示游戏进度
 
