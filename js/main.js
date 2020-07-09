@@ -18,11 +18,6 @@ oContarner.addEventListener('touchstart', ev => {
 })
 
 
-
-const proBar = new ProgressBar('.progressBar', 60);
-const timeBar = new ProgressBar('.timeBar', 60);
-
-
 function Card(imageIndex) {
   this.status = 'back'; //back select clear
   this.image = imageIndex; // image
@@ -153,7 +148,7 @@ Game.prototype.compareCards = function () {
 
 
     proBar.set(this.prec);
-    progText.innerHTML =  this.prec + "%";
+    progText.innerHTML = this.prec + "%";
 
     card2.setStatus('clear')
     card1.setStatus('clear')
@@ -193,7 +188,7 @@ oBtn.addEventListener('touchstart', function () {
   setTimeout(() => {
     game.init(18);
   }, 500)
-
+  uptime.init();
 
 })
 
@@ -206,25 +201,68 @@ function ProgressBar(barNode, TotalLen) {  // .timeBar  .progressBar
 
 }
 
-
+//游戏进度
+// 1. 显示游戏进度 tx
 ProgressBar.prototype.set = function (prec) {
   let tx = Math.floor(prec / 100 * this.totL);
-  console.log(tx, this.dom);
-
   this.dom.style.transform = `translate(${tx - this.totL}vw)`;
-
 }
 
 
+const proBar = new ProgressBar('.progressBar', 60);
+const timeBar = new ProgressBar('.timeBar', 60);
 
 
-
- // 游戏时间
+// 游戏时间
 //1.点击shart  开始到即时
 //2.时时刷新时间
 // 3.到达址时间现实游戏结束  调用弹窗
 
+function UpTime(time) {
+  this.time = time;
+  this.timer = null;
+}
 
- //游戏进度
- // 1. 显示游戏进度
+UpTime.prototype.init = function () {
+  this.lastTime = new Date() -0;
+  this.timeOut();
+}
+
+UpTime.prototype.timeOut = function () {
+ console.log(this.timer);
+  
+  this.timer = requestAnimationFrame(() => {
+    this.timeOut();
+  })
+  this.render();
+}
+
+UpTime.prototype.cancle = function () {
+  console.log(this.timer);
+  window.cancelAnimationFrame(this.timer);
+}
+
+UpTime.prototype.render = function () {
+  let interimT =0; 
+  let prev = 0;
+  this.currTime = new Date() -0;
+  this.gameTime = Math.floor((this.currTime - this.lastTime)/1000);
+
+  prev = Math.floor((this.gameTime/this.time)*100);
+
+
+  if(this.time - this.gameTime == -1) {
+    console.log(11);
+        this.cancle();
+  }else{
+
+    timeBar.set(prev);
+    timeText.innerHTML = this.time - this.gameTime + "s";
+  }
+
+console.log(this.gameTime);
+}
+
+const uptime = new UpTime(120);
+
 
