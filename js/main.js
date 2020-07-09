@@ -14,7 +14,7 @@ function Card(imageIndex) {
   this.status = 'back'; //back select clear
   this.image = imageIndex; // image
   this.dom = document.createElement('li');
-  this.dom.innerHTML = `<img src="../images/${imageIndex}.jpg" alt='test'>`;
+  this.dom.innerHTML = `<img src="http://117.51.157.103/vision/images/${imageIndex}.jpg" alt='test'>`;
 
   const _this = this;
   this.dom.addEventListener('touchstart', function () {
