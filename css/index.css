@@ -46,9 +46,11 @@ li::before{
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: aqua;
+  background:url('../images/18.jpg') no-repeat center center ;
+  background-size: 80% 80%;
   transform: rotateY(0deg);
   transition: all .5s;
+  /* transform-style: preserve-3d; */
   -webkit-backface-visibility: hidden;
 }
 
