@@ -145,6 +145,7 @@ header >div .bar{
 
 .stripes {
   transform: translate(-60vw);
+  transition: transform .5s;
   height: 20px;
   width: 100%;
   border-radius: 20px;

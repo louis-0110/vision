@@ -5,10 +5,23 @@
 const oWrap = document.getElementsByClassName('wrap')[0];
 const oContarner = document.querySelector('.container');
 
+// 时间 span
+const timeText = document.querySelector('.timeText');
+
+// 完成度 span
+
+const progText = document.querySelector('.progText');
+
 //清除移动端默认事件
 oContarner.addEventListener('touchstart', ev => {
   ev.preventDefault();
 })
+
+
+
+const proBar = new ProgressBar('.progressBar', 60);
+const timeBar = new ProgressBar('.timeBar', 60);
+
 
 function Card(imageIndex) {
   this.status = 'back'; //back select clear
@@ -68,6 +81,7 @@ Card.prototype.appendTo = function (containerNode) {
 function Game() {
   this.cardList = [];
   this.isFlipping = false;
+  this.prec = 0;
 }
 
 function getRandom(min, max) {
@@ -75,7 +89,7 @@ function getRandom(min, max) {
 }
 
 Game.prototype.init = function (length) {
-  this.length = length;
+  this.length = this.$length = length;
   for (let i = 1; i <= length; i++) {
 
     this.cardList.push(new Card(i));
@@ -122,7 +136,7 @@ Game.prototype.compareCards = function () {
   let cs = this.cardList.filter((e) => {
     return e.status == "select"
   })
-  
+
 
   if (cs.length != 2) {
     return;
@@ -132,54 +146,77 @@ Game.prototype.compareCards = function () {
     card2 = cs[1];
 
   if (card1.equal(card2)) {
-    this.length --;
+
+    this.length--;
+
+    this.prec = Math.floor((1 - this.length / this.$length) * 100);
+
+
+    proBar.set(this.prec);
+    progText.innerHTML =  this.prec + "%";
+
     card2.setStatus('clear')
     card1.setStatus('clear')
 
-      if(card2.image == '18'){
-        alert('领取红包');
-      }
+    if (card2.image == '18') {
+      alert('领取红包');
+    }
 
-    
+
     console.log(this.length)
-      if(0 == this.length){
-        
-        alert('完成');
-      }
+    if (0 == this.length) {
+
+      alert('完成');
+    }
   } else {
-    
+
     card2.setStatus('back')
     card1.setStatus('back')
   }
 }
 
- const game = new Game()
+const game = new Game()
 
 
 
- //开始按钮
+//开始按钮
 
- const  oBtn = document.querySelector('button');
+const oBtn = document.querySelector('button');
 const li = document.querySelectorAll('li');
 
- oBtn.addEventListener('touchstart',function(){
+oBtn.addEventListener('touchstart', function () {
 
   oBtn.classList.add('none');
-  li.forEach((ele)=>{
+  li.forEach((ele) => {
     ele.className = 'back';
   })
-  setTimeout(()=>{
+  setTimeout(() => {
     game.init(18);
-  },500)
-  
-  
- })
+  }, 500)
+
+
+})
 
 //进度条构造函数
 
-function ProgressBar(TotalLen){
-  this.totL= TotalLen; 
+function ProgressBar(barNode, TotalLen) {  // .timeBar  .progressBar
+  this.totL = TotalLen; // 60vw
+  this.progress = 0;
+  this.dom = document.querySelector(barNode);
+
 }
+
+
+ProgressBar.prototype.set = function (prec) {
+  let tx = Math.floor(prec / 100 * this.totL);
+  console.log(tx, this.dom);
+
+  this.dom.style.transform = `translate(${tx - this.totL}vw)`;
+
+}
+
+
+
 
 
  // 游戏时间
