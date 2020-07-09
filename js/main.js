@@ -85,6 +85,7 @@ function getRandom(min, max) {
 
 Game.prototype.init = function (length) {
   this.cardList = [];
+  this.prec =0;
   this.length = this.$length = length;
   for (let i = 1; i <= length; i++) {
 
@@ -96,10 +97,12 @@ Game.prototype.init = function (length) {
   this.cardList.sort(() => Math.random() - 0.5);
   this.initContainer();
   this.addEvent();
+  proBar.set(this.prec);
 }
 
 Game.prototype.initContainer = function () {
   oWrap.innerHTML = '';
+  progText.innerHTML = '0%';
   let len = this.cardList.length;
   for (let i = 0; i < len; i++) {
     this.cardList[i].appendTo(oWrap);
@@ -197,9 +200,7 @@ oBtn.addEventListener('touchstart', function () {
 
 function ProgressBar(barNode, TotalLen) {  // .timeBar  .progressBar
   this.totL = TotalLen; // 60vw
-  this.progress = 0;
   this.dom = document.querySelector(barNode);
-
 }
 
 //游戏进度

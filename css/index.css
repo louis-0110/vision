@@ -122,15 +122,15 @@ header{
 header >div{
   margin-top:10px;
   width:100vw;
+  color:#fff;
 }
  
 header >div p{
-  width: 20vw;
+  width: 16vw;
 }
 
 header >div span{
-  width: 10vw;
-  
+  width: 14vw;
 }
 header >div .bar{
   position: relative;
