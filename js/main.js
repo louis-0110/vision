@@ -14,7 +14,7 @@ function Card(imageIndex) {
   this.status = 'back'; //back select clear
   this.image = imageIndex; // image
   this.dom = document.createElement('li');
-  this.dom.innerHTML = `<img src="../images/${this.image}.jpg">`;
+  this.dom.innerHTML = `<img src="../images/${this.image}.jpg" alt='test'>`;
 
   const _this = this;
   this.dom.addEventListener('touchstart', function () {
@@ -75,7 +75,7 @@ function getRandom(min, max) {
 }
 
 Game.prototype.init = function (length) {
-
+  this.length = length;
   for (let i = 1; i <= length; i++) {
 
     this.cardList.push(new Card(i));
@@ -83,16 +83,15 @@ Game.prototype.init = function (length) {
 
   }
 
-  this.cardList.sort(() => Math.random() - 0.5)
-  console.log(this.cardList)
-
+  this.cardList.sort(() => Math.random() - 0.5);
   this.initContainer();
   this.addEvent();
 }
 
 Game.prototype.initContainer = function () {
   oWrap.innerHTML = '';
-  for (let i = 0; i < this.cardList.length; i++) {
+  let len = this.cardList.length;
+  for (let i = 0; i < len; i++) {
     this.cardList[i].appendTo(oWrap);
   }
 }
@@ -124,7 +123,7 @@ Game.prototype.compareCards = function () {
   let cs = this.cardList.filter((e) => {
     return e.status == "select"
   })
-
+  
 
   if (cs.length != 2) {
     return;
@@ -134,14 +133,27 @@ Game.prototype.compareCards = function () {
     card2 = cs[1];
 
   if (card1.equal(card2)) {
-    card1.setStatus('clear')
+    this.length --;
     card2.setStatus('clear')
+    card1.setStatus('clear')
+
+      if(card2.image == '18'){
+        alert('领取红包');
+      }
+
+    
+    console.log(this.length)
+      if(0 == this.length){
+        
+        alert('完成');
+      }
   } else {
-    card1.setStatus('back')
+    
     card2.setStatus('back')
+    card1.setStatus('back')
   }
 }
 
-game = new Game()
+ const game = new Game()
 
 game.init(18);
