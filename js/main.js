@@ -112,7 +112,6 @@ Game.prototype.addEvent = function () {
 
     c.onTransitionEnd = function () {
       _this.isFlipping = false;
-      console.log('this over')
       _this.compareCards();
     }
   }
@@ -156,4 +155,25 @@ Game.prototype.compareCards = function () {
 
  const game = new Game()
 
-game.init(18);
+
+
+ //开始按钮
+
+ const  oBtn = document.querySelector('button');
+const li = document.querySelectorAll('li');
+
+ oBtn.addEventListener('touchstart',function(){
+
+  oBtn.classList.add('none');
+  li.forEach((ele)=>{
+    ele.className = 'back';
+  })
+  setTimeout(()=>{
+    game.init(18);
+  },500)
+  
+  
+ })
+
+
+
