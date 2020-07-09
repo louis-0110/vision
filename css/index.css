@@ -141,7 +141,9 @@ header >div .bar{
 .left{
   float: left;
 }
-
+header .timeBar ,header .progressBar{
+  overflow: hidden;
+}
 
 .stripes {
   transform: translate(-60vw);
