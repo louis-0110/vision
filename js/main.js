@@ -1,17 +1,17 @@
 /*
-**
-**
-*/
+ **
+ **
+ */
 const oWrap = document.getElementsByClassName('wrap')[0];
 const oContarner = document.querySelector('.container');
 
-  //清除移动端默认事件
-  oContarner.addEventListener('touchstart',ev=>{
-    ev.preventDefault();
-  })
+//清除移动端默认事件
+oContarner.addEventListener('touchstart', ev => {
+  ev.preventDefault();
+})
 
 function Card(imageIndex) {
-  this.status = 'back';   //back select clear
+  this.status = 'back'; //back select clear
   this.image = imageIndex; // image
   this.dom = document.createElement('li');
   this.dom.innerHTML = `<img src="../images/${this.image}.jpg">`;
@@ -21,44 +21,42 @@ function Card(imageIndex) {
 
     if (_this.onClick) {
 
-      _this.dom.addEventListener('transitionend', () => {
-
-        if (_this.onTransitionEnd) {
-          _this.onTransitionEnd();
-        }
-      }, { once: true });
-
-      _this.onClick();
+      _this.onClick(); // 触发点击事件
     }
-
   })
 
 
 }
 Card.prototype.equal = function (imageIndex) {
-  return this.image == imageIndex.image;
+  return this.image == imageIndex.image; //返回两次图片序列是不是一样
 }
 
 Card.prototype.setStatus = function (status) {
   const _this = this;
 
   if (status == 'back') {
-    this.status = 'bakc';
+    this.status = 'back';
     this.dom.className = '';
-  }
-  else if (status == 'select') {
+  } else if (status == 'select') {
+
     this.status = 'select';
     this.dom.className = 'select';
-  }
-  else if (status == 'clear') {
+    _this.dom.addEventListener('transitionend', () => {
+
+      if (_this.onTransitionEnd) {
+        _this.onTransitionEnd();
+      }
+    }, {
+      once: true
+    });
+  } else if (status == 'clear') {
     this.status = 'clear';
     this.dom.className = 'clear';
-  }
-  else {
+  } else {
     throw new Error('status is not find')
   }
 
-  
+
 
 }
 
@@ -104,7 +102,6 @@ Game.prototype.addEvent = function () {
   for (let i = 0; i < this.cardList.length; i++) {
     let c = this.cardList[i];
     c.onClick = function () {
-
       if (this.status === "back" && !_this.isFlipping) {
         _this.isFlipping = true;
         this.setStatus('select')
@@ -116,50 +113,35 @@ Game.prototype.addEvent = function () {
 
     c.onTransitionEnd = function () {
       _this.isFlipping = false;
-      // this.setStatus('back')
-      // console.log('this over')
+      console.log('this over')
       _this.compareCards();
     }
   }
 }
 
-Game.prototype.compareCards = function(){
-  console.log(this.cardList);
-  let cs = this.cardList.filter((e)=>{
-console.log(e.status);
+Game.prototype.compareCards = function () {
+
+  let cs = this.cardList.filter((e) => {
     return e.status == "select"
   })
 
-console.log(cs);
 
-
-  if (cs.length != 2){
+  if (cs.length != 2) {
     return;
   }
 
-  var card1 = cs[0],card2 = cs[1];
+  var card1 = cs[0],
+    card2 = cs[1];
 
-  if(card1.equal(card2)){
+  if (card1.equal(card2)) {
     card1.setStatus('clear')
     card2.setStatus('clear')
-  }else{
+  } else {
     card1.setStatus('back')
     card2.setStatus('back')
   }
-  console.log(cs);
 }
 
 game = new Game()
 
 game.init(18);
-
-
-
-
-
-
-
-
-
-
-
