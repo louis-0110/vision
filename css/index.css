@@ -29,8 +29,9 @@ ul {
 .container {
   width: 90vw;
   height: 90vw;
-  border: 1px solid;
+  /* border: 1px solid; */
   margin: 20vw auto 0;
+  padding-top: 10vh;
 }
 
 .wrap > li {
@@ -111,7 +112,7 @@ header{
   position: fixed;
   top:0px;
   left: 0px;
-  padding-left:5vw ;
+  padding-left:5vw;
 }
 
 header >div{
@@ -125,15 +126,16 @@ header >div p{
 }
 
 header >div span{
-  width: 13vw;
+  width: 10vw;
   
 }
 header >div .bar{
-  height: 100%;
   background-color: #ccc;
   width:60vw;
   height: 20px;
   border-radius: 20px;
+  box-shadow:2px 2px 2px 0px  rgba(255, 255, 255, 0.4);
+  overflow: hidden;
 }
 
 .left{
@@ -142,10 +144,10 @@ header >div .bar{
 
 
 .stripes {
+  transform: translate(-60vw);
   height: 20px;
-  width: 8%;
+  width: 100%;
   border-radius: 20px;
-  position: absolute;
   background: #06c2b7;
   background-image: -webkit-linear-gradient(
     45deg,
