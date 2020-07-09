@@ -84,6 +84,7 @@ function getRandom(min, max) {
 }
 
 Game.prototype.init = function (length) {
+  this.cardList = [];
   this.length = this.$length = length;
   for (let i = 1; i <= length; i++) {
 
@@ -157,8 +158,6 @@ Game.prototype.compareCards = function () {
       alert('领取红包');
     }
 
-
-    console.log(this.length)
     if (0 == this.length) {
 
       alert('完成');
@@ -177,18 +176,20 @@ const game = new Game()
 //开始按钮
 
 const oBtn = document.querySelector('button');
-const li = document.querySelectorAll('li');
+
 
 oBtn.addEventListener('touchstart', function () {
-
+  const li = Array.from(document.getElementsByTagName('li'));
   oBtn.classList.add('none');
   li.forEach((ele) => {
     ele.className = 'back';
   })
+
   setTimeout(() => {
     game.init(18);
+    uptime.init();
   }, 500)
-  uptime.init();
+  
 
 })
 
@@ -224,13 +225,11 @@ function UpTime(time) {
 }
 
 UpTime.prototype.init = function () {
-  this.lastTime = new Date() -0;
+  this.lastTime = new Date() - 0;
   this.timeOut();
 }
 
 UpTime.prototype.timeOut = function () {
- console.log(this.timer);
-  
   this.timer = requestAnimationFrame(() => {
     this.timeOut();
   })
@@ -238,30 +237,37 @@ UpTime.prototype.timeOut = function () {
 }
 
 UpTime.prototype.cancle = function () {
-  console.log(this.timer);
   window.cancelAnimationFrame(this.timer);
 }
 
 UpTime.prototype.render = function () {
-  let interimT =0; 
+  let interimT = 0;
   let prev = 0;
-  this.currTime = new Date() -0;
-  this.gameTime = Math.floor((this.currTime - this.lastTime)/1000);
+  this.currTime = new Date() - 0;
+  this.gameTime = Math.floor((this.currTime - this.lastTime) / 1000);
 
-  prev = Math.floor((this.gameTime/this.time)*100);
+  prev = Math.floor((this.gameTime / this.time) * 100);
 
 
-  if(this.time - this.gameTime == -1) {
-    console.log(11);
-        this.cancle();
-  }else{
+  if (this.time - this.gameTime == -1) {
+    this.cancle();
 
+    oBtn.classList.remove('none');
+
+    const li = document.querySelectorAll('li');
+
+    li.forEach((ele) => {
+      ele.className = 'select';
+    })
+
+
+  } else {
     timeBar.set(prev);
     timeText.innerHTML = this.time - this.gameTime + "s";
   }
-
-console.log(this.gameTime);
 }
+
+
 
 const uptime = new UpTime(120);
 
