@@ -21,6 +21,10 @@ ul {
   list-style: none;
 }
 
+.left{
+  float: left;
+}
+
 .clearFix::after {
   content: "";
   clear: both;
@@ -130,6 +134,7 @@ header >div span{
   
 }
 header >div .bar{
+  position: relative;
   background-color: #ccc;
   width:60vw;
   height: 20px;
@@ -139,12 +144,7 @@ header >div .bar{
   z-index: 999;
 }
 
-.left{
-  float: left;
-}
-header .timeBar ,header .progressBar{
-  overflow: hidden;
-}
+
 
 .stripes {
   transform: translate(-60vw);
