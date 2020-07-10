@@ -243,14 +243,14 @@ UpTime.prototype.cancle = function () {
 
 UpTime.prototype.render = function () {
   let interimT = 0;
-  let prev = 0;
+  let prev = 0.5;
   this.currTime = new Date() - 0;
   this.gameTime = Math.floor((this.currTime - this.lastTime) / 1000);
 
-  prev = Math.floor((this.gameTime / this.time) * 100);
+  prev = Math.ceil((this.gameTime / this.time) * 100);
 
-
-  if (this.time - this.gameTime == -1) {
+console.log(prev);
+  if (prev >=101) {
     this.cancle();
 
     oBtn.classList.remove('none');
