@@ -1,7 +1,4 @@
 
-
-
-
 //1.倒计时结束 弹出 很遗憾！再接再厉！
 //2.完成时，弹出 恭喜🎉完成
 
@@ -17,7 +14,6 @@ function Popups() {
   this.closeBtn.addEventListener('touchstart',()=>{
     this.none();
   })
-
 }
 
 Popups.prototype.none = function () {
@@ -30,14 +26,12 @@ Popups.prototype.block = function () {
   this.status = 'block';
 }
 
-
 Popups.prototype.setContent = function (flag) {
   if (flag == 1) {
     this.content.innerHTML = `<p style='font-size:26px;color:#fff;text-align:center;line-height:10'>恭喜🎉过关</p>`;
   } else if (flag == 0) {
     this.content.innerHTML = `<p style='font-size:26px;color:#fff;text-align:center;line-height:10'>遗憾！再接再厉！</p>`;
   }
-
 }
 
 const pop = new Popups();

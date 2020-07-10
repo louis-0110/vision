@@ -17,7 +17,6 @@ oContarner.addEventListener('touchstart', ev => {
   ev.preventDefault();
 })
 
-
 function Card(imageIndex) {
   this.status = 'back'; //back select clear
   this.image = imageIndex; // image
@@ -32,8 +31,6 @@ function Card(imageIndex) {
       _this.onClick(); // 触发点击事件
     }
   })
-
-
 }
 Card.prototype.equal = function (imageIndex) {
   return this.image == imageIndex.image; //返回两次图片序列是不是一样
@@ -63,15 +60,11 @@ Card.prototype.setStatus = function (status) {
   } else {
     throw new Error('status is not find')
   }
-
-
-
 }
 
 Card.prototype.appendTo = function (containerNode) {
   containerNode && containerNode.appendChild(this.dom);
 }
-
 
 function Game() {
   this.cardList = [];
@@ -276,8 +269,6 @@ UpTime.prototype.render = function () {
     timeText.innerHTML = this.time - this.gameTime + "s";
   }
 }
-
-
 
 const uptime = new UpTime(12);
 
