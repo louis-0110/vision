@@ -33,9 +33,9 @@ Popups.prototype.block = function () {
 
 Popups.prototype.setContent = function (flag) {
   if (flag == 1) {
-    this.content.innerHTML = `<p style='font-size:26px;color:#fff;text-alidn=center'>恭喜🎉过关</p>`;
+    this.content.innerHTML = `<p style='font-size:26px;color:#fff;text-align=center'>恭喜🎉过关</p>`;
   } else if (flag == 0) {
-    this.content.innerHTML = `<p style='font-size:26px;color:#fff;text-alidn=center'>遗憾！再接再厉！</p>`;
+    this.content.innerHTML = `<p style='font-size:26px;color:#fff;text-align=center'>遗憾！再接再厉！</p>`;
   }
 
 }
