@@ -164,8 +164,10 @@ Game.prototype.compareCards = function () {
 
     if (0 == this.length) {
 
+      uptime.cancle();
       pop.setContent(1)
       pop.block();
+      oBtn.classList.remove('none');
     }
   } else {
 
@@ -258,13 +260,14 @@ UpTime.prototype.render = function () {
 
     const li = document.querySelectorAll('li');
 
-    //遮罩层弹窗 
+    //遮罩层弹窗 倒计时结束前完成游戏
+
     pop.setContent(0);
     pop.block();
 
 
     li.forEach((ele) => {
-      if(!ele.classList.contains('clear')){
+      if (!ele.classList.contains('clear')) {
         ele.className = 'select';
       }
     })
