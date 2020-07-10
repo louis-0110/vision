@@ -151,7 +151,7 @@ header >div .bar{
   height: 20px;
   width: 100%;
   border-radius: 20px;
-  background: rgb(0, 0, 0);
+  background: #1866ca;
   background-image: -webkit-linear-gradient(
     -45deg,
     rgba(255, 255, 255, 0.15) 25%,
