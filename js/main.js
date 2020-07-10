@@ -85,7 +85,7 @@ function getRandom(min, max) {
 
 Game.prototype.init = function (length) {
   this.cardList = [];
-  this.prec =0;
+  this.prec = 0;
   this.length = this.$length = length;
   for (let i = 1; i <= length; i++) {
 
@@ -192,7 +192,7 @@ oBtn.addEventListener('touchstart', function () {
     game.init(18);
     uptime.init();
   }, 500)
-  
+
 
 })
 
@@ -249,8 +249,7 @@ UpTime.prototype.render = function () {
 
   prev = Math.ceil((this.gameTime / this.time) * 100);
 
-console.log(prev);
-  if (prev >=101) {
+  if (prev >= 101) {
     this.cancle();
 
     oBtn.classList.remove('none');
@@ -258,10 +257,10 @@ console.log(prev);
     const li = document.querySelectorAll('li');
 
     li.forEach((ele) => {
-      ele.className = 'select';
+      if(!ele.classList.contains('clear')){
+        ele.className = 'select';
+      }
     })
-
-
   } else {
     timeBar.set(prev);
     timeText.innerHTML = this.time - this.gameTime + "s";
@@ -270,6 +269,6 @@ console.log(prev);
 
 
 
-const uptime = new UpTime(120);
+const uptime = new UpTime(12);
 
 
