@@ -151,9 +151,9 @@ header >div .bar{
   height: 20px;
   width: 100%;
   border-radius: 20px;
-  background: #06c2b7;
+  background: rgb(0, 0, 0);
   background-image: -webkit-linear-gradient(
-    45deg,
+    -45deg,
     rgba(255, 255, 255, 0.15) 25%,
     transparent 25%,
     transparent 50%,
@@ -163,7 +163,7 @@ header >div .bar{
     transparent
   );
   background-image: -o-linear-gradient(
-    45deg,
+    -45deg,
     rgba(255, 255, 255, 0.15) 25%,
     transparent 25%,
     transparent 50%,
@@ -173,7 +173,7 @@ header >div .bar{
     transparent
   );
   background-image: linear-gradient(
-    45deg,
+    -45deg,
     rgba(255, 255, 255, 0.15) 25%,
     transparent 25%,
     transparent 50%,
@@ -185,9 +185,9 @@ header >div .bar{
   -webkit-background-size: 20px 20px;
   background-size: 20px 20px;
   background-position: 0px 0px;
-  -webkit-animation: progress-bar-stripes 5s linear infinite;
-  -o-animation: progress-bar-stripes 5s linear infinite;
-  animation: progress-bar-stripes 5s linear infinite;
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  -o-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
 
 }
 
@@ -198,27 +198,27 @@ header >div .bar{
 
   @-webkit-keyframes progress-bar-stripes {
     from {
-      background-position: 40px 0;
+      background-position: 0px 0;
     }
     to {
-      background-position: 0 0;
+      background-position: 40px 0;
     }
   }
 
   @-o-keyframes progress-bar-stripes {
     from {
-      background-position: 40px 0;
+      background-position: 0px 0;
     }
     to {
-      background-position: 0 0;
+      background-position: 40px 0;
     }
   }
   @keyframes progress-bar-stripes {
     from {
-      background-position: 40px 0;
+      background-position: 0px 0;
     }
     to {
-      background-position: 0 0;
+      background-position: 40px 0;
     }
   }
 
