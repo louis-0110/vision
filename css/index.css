@@ -116,14 +116,14 @@ li.clear img {
 .btn {
   margin-top: 20px;
   text-align: center;
-  border-radius: 20px;
-  background-color: bisque;
+  
 }
 
 .btn button{
   width: 100%;
   height: 10vw;
   border-radius: 20px;
+  background-color: bisque;
   border:1px solid #1866ca;
 }
 
@@ -132,7 +132,7 @@ li.clear img {
 .popups {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.9);
   position: fixed;
   top: 0;
   left: 0;
