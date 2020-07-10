@@ -8,11 +8,9 @@
 function Popups(){
   this.dom = document.querySelector('.popups');
   this.status = 'none';
-
   this.dom.addEventListener('touchstart', ev => {
     ev.preventDefault();
   })
-  
 }
 
 Popups.prototype.none= function(){
