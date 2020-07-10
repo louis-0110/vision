@@ -276,6 +276,6 @@ UpTime.prototype.render = function () {
 
 
 
-const uptime = new UpTime(12);
+const uptime = new UpTime(120);
 
 
