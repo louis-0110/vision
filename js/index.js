@@ -164,7 +164,8 @@ Game.prototype.compareCards = function () {
 
     if (0 == this.length) {
 
-      alert('完成');
+      pop.setContent(1)
+      pop.block();
     }
   } else {
 
@@ -256,6 +257,11 @@ UpTime.prototype.render = function () {
     oBtn.classList.remove('none');
 
     const li = document.querySelectorAll('li');
+
+    //遮罩层弹窗 
+    pop.setContent(0);
+    pop.block();
+
 
     li.forEach((ele) => {
       if(!ele.classList.contains('clear')){
