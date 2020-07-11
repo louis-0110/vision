@@ -264,7 +264,7 @@ UpTime.prototype.render = function () {
     setTimeout(() => {
       pop.setContent(0);
       pop.block();
-    })
+    },500)
 
   } else {
     timeBar.set(prev);
