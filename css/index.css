@@ -51,6 +51,7 @@ button {
   overflow: hidden;
   width: 100%;
   height: 20vw;
+  padding-top: 2vw;
   box-sizing: border-box;
   z-index: 999;
 }
