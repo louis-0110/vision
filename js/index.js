@@ -254,22 +254,24 @@ UpTime.prototype.render = function () {
     const li = document.querySelectorAll('li');
 
     //遮罩层弹窗 倒计时结束前完成游戏
-
-    pop.setContent(0);
-    pop.block();
-
-
     li.forEach((ele) => {
       if (!ele.classList.contains('clear')) {
         ele.className = 'select';
       }
     })
+
+    // 加倒计时方式翻转图片穿透遮罩层
+    setTimeout(() => {
+      pop.setContent(0);
+      pop.block();
+    })
+
   } else {
     timeBar.set(prev);
     timeText.innerHTML = this.time - this.gameTime + "s";
   }
 }
 
-const uptime = new UpTime(120);
+const uptime = new UpTime(12);
 
 
