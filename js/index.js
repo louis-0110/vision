@@ -97,6 +97,7 @@ Game.prototype.init = function (length) {
 
 Game.prototype.initContainer = function () {
   oWrap.innerHTML = '';
+
   progText.innerHTML = '0%';
   let len = this.cardList.length;
   for (let i = 0; i < len; i++) {
@@ -264,7 +265,7 @@ UpTime.prototype.render = function () {
 
     // oBtn.classList.remove('none');
 
-    const li = document.querySelectorAll('li');
+    const li = Array.from(document.getElementsByTagName('li'));
 
     //遮罩层弹窗 倒计时结束前未完成游戏
     li.forEach((ele) => {

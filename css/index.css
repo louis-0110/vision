@@ -166,10 +166,16 @@ li.clear img {
   margin: 26vw auto 0;
   background: url('../images/close.png') no-repeat center;
   background-size: cover;
-
 }
 
-
+.popups .nextBtn,
+.popups .lastBtn{
+  width:30vw;
+  height:10vw;
+  margin:0 auto;
+  border-radius: 20px;
+  background-color: firebrick;
+}
 
 /*bar*/
 header{

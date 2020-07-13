@@ -18,17 +18,21 @@ function Popups() {
   })
 
   this.nextBtn.addEventListener('touchstart', () => {
-    this.none();
-    oFluidWrap.classList.remove('grid2');
+    initGame(8, 60)
+    setTimeout(()=>{
+      this.none();
+    },500)
     oFluidWrap.classList.add('grid4');
-    initGame(8, 90)
+    oFluidWrap.classList.remove('grid2');
   })
 
   this.lastBtn.addEventListener('touchstart', () => {
-    this.none();
-    oFluidWrap.classList.remove('grid4');
-    oFluidWrap.classList.add('grid6');
     initGame(18, 120)
+    setTimeout(()=>{
+      this.none();
+    },500)
+    oFluidWrap.classList.add('grid6');
+    oFluidWrap.classList.remove('grid4');
   })
 }
 
