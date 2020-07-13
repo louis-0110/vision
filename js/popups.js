@@ -33,7 +33,6 @@ function Popups() {
     },500)
     oFluidWrap.classList.add('grid6');
     oFluidWrap.classList.remove('grid4');
-    this.classList.add('none');
   })
 }
 

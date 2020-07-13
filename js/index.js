@@ -167,6 +167,9 @@ Game.prototype.compareCards = function () {
         pop.nextBtn.classList.add('none');
         pop.lastBtn.classList.remove('none');
       }
+      else if(this.time == 3){
+        pop.lastBtn.classList.remove('none');
+      }
       this.time ++;
       // oBtn.classList.remove('none');
     }
