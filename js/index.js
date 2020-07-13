@@ -3,6 +3,7 @@
  **
  */
 const oWrap = document.getElementsByClassName('wrap')[0];
+const oFluidWrap = document.querySelector('.fluidWrap');
 const oContarner = document.querySelector('.container');
 
 // 时间 span
@@ -32,8 +33,8 @@ function Card(imageIndex) {
     }
   })
 }
-Card.prototype.equal = function (imageIndex) {
-  return this.image == imageIndex.image; //返回两次图片序列是不是一样
+Card.prototype.equal = function (cardObj) {
+  return this.image == cardObj.image; //返回两次图片序列是不是一样
 }
 
 Card.prototype.setStatus = function (status) {
@@ -43,11 +44,10 @@ Card.prototype.setStatus = function (status) {
     this.status = 'back';
     this.dom.className = '';
   } else if (status == 'select') {
-
     this.status = 'select';
     this.dom.className = 'select';
-    _this.dom.addEventListener('transitionend', () => {
 
+    _this.dom.addEventListener('transitionend', () => {
       if (_this.onTransitionEnd) {
         _this.onTransitionEnd();
       }
@@ -70,6 +70,7 @@ function Game() {
   this.cardList = [];
   this.isFlipping = false;
   this.prec = 0;
+  this.time = 1;
 }
 
 function getRandom(min, max) {
@@ -125,7 +126,7 @@ Game.prototype.addEvent = function () {
 }
 
 Game.prototype.compareCards = function () {
-
+  //返回card是select 的数组
   let cs = this.cardList.filter((e) => {
     return e.status == "select"
   })
@@ -138,32 +139,38 @@ Game.prototype.compareCards = function () {
   var card1 = cs[0],
     card2 = cs[1];
 
+  //检查图片是不是一致
   if (card1.equal(card2)) {
 
     this.length--;
 
     this.prec = Math.floor((1 - this.length / this.$length) * 100);
 
-
+    //更改进度条百分比
     proBar.set(this.prec);
     progText.innerHTML = this.prec + "%";
-
+    //一致后消灭图片
     card2.setStatus('clear')
     card1.setStatus('clear')
-
+    //检查消灭的是不是红包 18 
     if (card2.image == '18') {
       alert('领取红包');
     }
-
+    //检查有没有完成游戏 
     if (0 == this.length) {
-
+      
       uptime.cancle();
       pop.setContent(1)
       pop.block();
-      oBtn.classList.remove('none');
+      if(this.time == 2){
+        pop.nextBtn.classList.add('none');
+        pop.lastBtn.classList.remove('none');
+      }
+      this.time ++;
+      // oBtn.classList.remove('none');
     }
   } else {
-
+    //两张图片不一致的话，就自动翻到背面
     card2.setStatus('back')
     card1.setStatus('back')
   }
@@ -177,21 +184,27 @@ const game = new Game()
 
 const oBtn = document.querySelector('button');
 
-
-oBtn.addEventListener('touchstart', function () {
+function initGame(num, time) {
   const li = Array.from(document.getElementsByTagName('li'));
-  oBtn.classList.add('none');
   li.forEach((ele) => {
     ele.className = 'back';
   })
-
   setTimeout(() => {
-    game.init(18);
-    uptime.init();
+    game.init(num);
+    uptime.init(time);
   }, 500)
+}
 
-
+//开始游戏
+oBtn.addEventListener('touchstart', function () {
+  oBtn.classList.add('none');
+  initGame(2, 10)
 })
+
+//下一关
+//最后一关
+//在popups模块绑定
+
 
 //进度条构造函数
 
@@ -207,7 +220,7 @@ ProgressBar.prototype.set = function (prec) {
   this.dom.style.transform = `translate(${tx - this.totL}vw)`;
 }
 
-
+// 60 是bar的长度 60vw
 const proBar = new ProgressBar('.progressBar', 60);
 const timeBar = new ProgressBar('.timeBar', 60);
 
@@ -218,11 +231,11 @@ const timeBar = new ProgressBar('.timeBar', 60);
 // 3.到达址时间现实游戏结束  调用弹窗
 
 function UpTime(time) {
-  this.time = time;
   this.timer = null;
 }
 
-UpTime.prototype.init = function () {
+UpTime.prototype.init = function (time) {
+  this.time = time;
   this.lastTime = new Date() - 0;
   this.timeOut();
 }
@@ -249,11 +262,11 @@ UpTime.prototype.render = function () {
   if (prev >= 101) {
     this.cancle();
 
-    oBtn.classList.remove('none');
+    // oBtn.classList.remove('none');
 
     const li = document.querySelectorAll('li');
 
-    //遮罩层弹窗 倒计时结束前完成游戏
+    //遮罩层弹窗 倒计时结束前未完成游戏
     li.forEach((ele) => {
       if (!ele.classList.contains('clear')) {
         ele.className = 'select';
@@ -262,9 +275,11 @@ UpTime.prototype.render = function () {
 
     // 加倒计时方式翻转图片穿透遮罩层
     setTimeout(() => {
+      pop.nextBtn.classList.add('none');
+      pop.lastBtn.classList.add('none');
       pop.setContent(0);
       pop.block();
-    },500)
+    }, 500)
 
   } else {
     timeBar.set(prev);
@@ -272,6 +287,6 @@ UpTime.prototype.render = function () {
   }
 }
 
-const uptime = new UpTime(120);
+const uptime = new UpTime();
 
 

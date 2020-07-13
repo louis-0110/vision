@@ -5,18 +5,35 @@
 function Popups() {
   this.dom = document.querySelector('.popups');
   this.closeBtn = document.querySelector('.close');
+  this.nextBtn = document.querySelector('.nextBtn');
+  this.lastBtn = document.querySelector('.lastBtn');
   this.content = document.querySelector('.pContent');
   this.status = 'none';
   this.dom.addEventListener('touchstart', ev => {
     ev.preventDefault();
   })
 
-  this.closeBtn.addEventListener('touchstart',()=>{
+  this.closeBtn.addEventListener('touchstart', () => {
     this.none();
+  })
+
+  this.nextBtn.addEventListener('touchstart', () => {
+    this.none();
+    oFluidWrap.classList.remove('grid2');
+    oFluidWrap.classList.add('grid4');
+    initGame(8, 90)
+  })
+
+  this.lastBtn.addEventListener('touchstart', () => {
+    this.none();
+    oFluidWrap.classList.remove('grid4');
+    oFluidWrap.classList.add('grid6');
+    initGame(18, 120)
   })
 }
 
 Popups.prototype.none = function () {
+
   this.dom.classList.add('none');
   this.status = 'none';
 }
